@@ -1,0 +1,37 @@
+<!--
+  Generated template for the SettingPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>店铺设置</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content no-padding>
+  <ion-list>
+    <button ion-item [navPush]="shop">店铺信息</button>
+    <button ion-item [navPush]="modifypassword">修改密码</button>
+  </ion-list>
+  <ion-list>
+    <button ion-item [navPush]="aboutus">关于我们</button>
+    <!--<ion-item>-->
+      <!--联系客服-->
+      <!--<ion-note item-end>13235900713</ion-note>-->
+    <!--</ion-item>-->
+    <button ion-item (click)="call(10086)">
+      联系客服
+      <ion-note item-end>13235900713</ion-note>
+    </button>
+    <button ion-item>版本号：1.0.0</button>
+  </ion-list>
+  <ion-list>
+    <button ion-item (click)="logout()">安全退出</button>
+  </ion-list>
+
+</ion-content>

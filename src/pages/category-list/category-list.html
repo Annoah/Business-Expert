@@ -1,0 +1,41 @@
+<!--
+  Generated template for the CategoryListPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>商品分类</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only large (click)="gotoAddCategory()"><ion-icon name="add"></ion-icon></button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content no-padding class="left-list">
+  <ion-list>
+    <ion-item>大分类</ion-item>
+    <button ion-item [ngClass]="{'item-active': category == activeCategory}" *ngFor="let category of categories" (click)="selectCategory(category)">{{category.name}}</button>
+    <button ion-button color="darkblue" clear (click)="gotoAddCategory()"><ion-icon name="add-circle"></ion-icon>&nbsp;&nbsp;新增分类</button>
+  </ion-list>
+</ion-content>
+<ion-content no-padding class="right-list">
+  <ion-list>
+    <ion-item>小分类</ion-item>
+    <button ion-item (click)="selectSubCategory(activeCategory)" [ngClass]="{'item-active': activeCategory == activeSubCategory}">无小分类进入大分类</button>
+    <button ion-item [ngClass]="{'item-active': category == activeSubCategory}" *ngFor="let category of activeCategory.children" (click)="selectSubCategory(category)">{{category.name}}</button>
+    <button ion-button color="darkblue" clear (click)="gotoAddSubCategory()"><ion-icon name="add-circle"></ion-icon>&nbsp;&nbsp;新增小分类</button>
+  </ion-list>
+</ion-content>
+<ion-footer class="on-right">
+  <ion-toolbar>
+    <p>{{sort}}</p>
+    <ion-buttons end>
+      <button ion-buttons (click)="presentActionSheet()">更多</button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

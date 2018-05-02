@@ -1,0 +1,17 @@
+page-category-list {
+  .left-list{
+    width: 40%;
+    overflow-y: visible;
+  }
+  .on-right,.right-list{
+    width: 60%;
+    margin-left: 40%;
+    overflow-y: visible;
+  }
+  .item-active{
+    background-color: #fff;
+    border-left-color: color($colors,primary);
+    border-left-width: 4px;
+    border-left-style: solid;
+  }
+}

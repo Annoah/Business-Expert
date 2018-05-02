@@ -1,0 +1,129 @@
+<!--
+  Generated template for the RegisterPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <!--<ion-title>RegisterPage</ion-title>-->
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content no-padding>
+  <div text-center>
+    <img class="logo" src="assets/images/logo.png" alt="">
+  </div>
+  <ion-grid>
+    <ion-row>
+  <ion-col>
+    <img src="assets/images/registered_one.png" alt="" *ngIf="registerSlides.getActiveIndex()!=0">
+    <img src="assets/images/registered_one_one.png" alt="" *ngIf="registerSlides.getActiveIndex()==0">
+  </ion-col>
+      <ion-col align-self-center>
+        <hr class="line">
+      </ion-col>
+  <ion-col>
+    <img src="assets/images/registered_two.png" alt="" *ngIf="registerSlides.getActiveIndex()!=1">
+    <img src="assets/images/registered_two_two.png" alt="" *ngIf="registerSlides.getActiveIndex()==1">
+  </ion-col>
+      <ion-col align-self-center>
+        <hr class="line">
+      </ion-col>
+  <ion-col>
+    <img src="assets/images/registered_three.png" alt="" *ngIf="registerSlides.getActiveIndex()!=2">
+    <img src="assets/images/registered_three_three.png" alt="" *ngIf="registerSlides.getActiveIndex()==2">
+  </ion-col>
+      <ion-col align-self-center>
+        <hr class="line">
+      </ion-col>
+  <ion-col>
+    <img src="assets/images/register_four.png" alt="" *ngIf="registerSlides.getActiveIndex()!=3">
+    <img src="assets/images/register_four_four.png" alt="" *ngIf="registerSlides.getActiveIndex()==3">
+  </ion-col>
+    </ion-row>
+  </ion-grid>
+<div>
+  <ion-slides #registerSlides>
+    <ion-slide>
+      <h1>步骤1</h1>
+      <form #registerForm1="ngForm">
+        <ion-list>
+          <ion-item>
+            <ion-label floating>
+              请输入您的手机号码
+            </ion-label>
+            <ion-input type="number" [(ngModel)]="register.phone" name="phone" required pattern="^((13[0-9])|(14[5|7])|(15([0-3]|[5-9]))|(18[0,2,3,5-9]))\\d{8}$" #phone="ngModel"></ion-input>
+          </ion-item>
+          <ion-item *ngIf="phone.invalid && phone.touched">
+            <p [hidden]="!phone.errors?.required">请输入手机号</p>
+            <p [hidden]="!phone.errors?.pattern">您输入的手机号格式不正确</p>
+          </ion-item>
+        </ion-list>
+        <div padding>
+          <button type="submit" ion-button block color="primary" (click)="send()" [disabled]="registerForm1.invalid">下一步</button>
+        </div>
+      </form>
+    </ion-slide>
+    <ion-slide>
+      <h1>步骤2</h1>
+      <form #registerForm2="ngForm">
+        <ion-grid>
+          <ion-row>
+            <ion-input name="code" type="number" placeholder="请输入收到的验证码" required pattern="^\\d{4}$" [(ngModel)]="register.code" #code="ngModel"></ion-input>
+            <button type="submit" ion-button color="primary" [disabled]="sent" (click)="send1()">{{button}}
+            </button>
+          </ion-row>
+        </ion-grid>
+          <ion-item *ngIf="code.invalid && code.touched">
+            <p [hidden]="!code.errors?.required">请输入验证码</p>
+            <p [hidden]="!code.errors?.pattern">您输入的验证码格式不正确</p>
+          </ion-item>
+        <div padding>
+          <button type="submit" ion-button block color="primary" (click)="previous()">上一步</button>
+          <button type="submit" ion-button block color="primary" (click)="validateCode()" [disabled]="registerForm2.invalid">下一步</button>
+        </div>
+      </form>
+    </ion-slide>
+    <ion-slide>
+      <h1>步骤3</h1>
+      <form #registerForm3="ngForm">
+        <ion-input name="shopName" type="text" placeholder="请输入店铺的名称" required pattern="^[\u4e00-\u9fff|0-9A-Za-z|]{1,8}$" [(ngModel)]="register.shopName" #shopName="ngModel"></ion-input>
+        <ion-item *ngIf="shopName.invalid && shopName.touched">
+          <p [hidden]="!shopName.errors?.required">请输入店铺的名称</p>
+          <p [hidden]="!shopName.errors?.pattern">店铺名称不超过8个字</p>
+        </ion-item>
+        <ion-input name="email" type="text" placeholder="请输入电子邮箱" required pattern="^([0-9A-Za-z_\.\-])+\@(([0-9A-Za-z\-])+\.)+([0-9A-Za-z]{2,5})+$"[(ngModel)]="register.email" #email="ngModel"></ion-input>
+        <ion-item *ngIf="email.invalid && email.touched">
+          <p [hidden]="!email.errors?.required">请输入电子邮箱</p>
+          <p [hidden]="!email.errors?.pattern">您输入的电子邮箱格式不正确</p>
+        </ion-item>
+        <ion-input name="password" type="password" placeholder="请输入登录密码"required pattern="^(?=.{6,16})[0-9A-Za-z]*[^0-9A-Za-z][0-9A-Za-z]*$" [(ngModel)]="register.password" #password="ngModel"></ion-input>
+        <ion-item *ngIf="password.invalid && password.touched">
+          <p [hidden]="!password.errors?.required">请输入登录密码</p>
+          <p [hidden]="!password.errors?.pattern">您输入的密码格式不正确，长度应为6至16位，至少包含数字、英文、符号三种字符类型中的两种</p>
+        </ion-item>
+        <ion-input name="confirmPassword" type="password" placeholder="请输入确认密码"required [(ngModel)]="register.confirmPassword" #confirmPassword="ngModel"></ion-input>
+        <ion-item *ngIf="confirmPassword.invalid && confirmPassword.touched">
+          <p [hidden]="!confirmPassword.errors?.required">请输入确认密码</p>
+          <p [hidden]="password!=confirmPassword">两次输入的密码不一致</p>
+        </ion-item>
+        <div padding>
+          <button type="submit" ion-button block color="primary" (click)="previous()">上一步</button>
+          <button type="submit" ion-button block color="primary" (click)="store()" [disabled]="registerForm3.invalid">完成</button>
+        </div>
+      </form>
+    </ion-slide>
+    <ion-slide>
+      <h1>注册成功</h1>
+      <form #registerForm4="ngForm">
+        <button type="submit" ion-button block color="primary" (click)="gotoLogin()">登录</button>
+      </form>
+    </ion-slide>
+  </ion-slides>
+</div>
+</ion-content>
+<copyright [bottom]="'50px'"></copyright>

@@ -1,0 +1,33 @@
+<!--
+  Generated template for the AddcategoryPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>新增分类</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content no-padding>
+  <ion-list>
+    <ion-item>
+      <ion-label>大分类</ion-label>
+      <ion-input name="Category" type="text" [(ngModel)]="Categorylist.name" #Category="ngModel"></ion-input>
+    </ion-item>
+  </ion-list>
+  <ion-list>
+    <ion-item *ngFor="let child of Childernlist">
+      <ion-label>小分类</ion-label>
+      <ion-input name="SubCategory" type="text" [(ngModel)]="child.name" #SubCategory="ngModel"></ion-input>
+    </ion-item>
+    <button ion-button color="darkblue" clear (click)="addSubCategory(category)"><ion-icon name="add-circle"></ion-icon>&nbsp;&nbsp;新增小分类</button>
+  </ion-list>
+  <div padding-horizontal>
+    <button ion-button block color="primary" (click)="save()">保存</button>
+  </div>
+</ion-content>

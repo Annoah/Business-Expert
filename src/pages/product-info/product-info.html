@@ -1,0 +1,81 @@
+<!--
+  Generated template for the ProductInfoPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>商品详情</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content no-padding>
+  <ion-list>
+    <ion-item>
+      <!--<ion-thumbnail item-start>-->
+      <!--<img src="assets/images/supplier_icon.png">-->
+      <!--</ion-thumbnail>-->
+      <img style="max-width: 70px;max-height: 70px;"  src="assets/images/supplier_icon.png" *ngIf="product.images.length < 3">
+      <img style="max-width: 70px;max-height: 70px;" [src]="image" alt="" *ngFor="let image of product.images" >
+      <!--<p item-end>上传图片</p>-->
+    </ion-item>
+      <ion-item>
+        分类
+        <ion-note item-end>{{product.categoryName}}</ion-note>
+      </ion-item>
+    <ion-item>
+      条码
+      <ion-note item-end>{{product.barcode}}</ion-note>
+    </ion-item>
+    <ion-item>
+      名称
+      <ion-note item-end>{{product.name}}</ion-note>
+    </ion-item>
+  </ion-list>
+  <ion-list>
+    <ion-item>
+      售价
+      <ion-note item-end>{{product.price}}</ion-note>
+    </ion-item>
+    <ion-item>
+      进价
+      <ion-note item-end>{{product.bid}}</ion-note>
+    </ion-item>
+    <ion-item>
+      库存
+      <ion-note item-end>{{product.stock}}</ion-note>
+    </ion-item>
+    <ion-item>
+      规格
+      <ion-note item-end>{{product.spec}}</ion-note>
+    </ion-item>
+    <ion-item>
+      备注
+      <ion-note item-end>{{product.remark}}</ion-note>
+    </ion-item>
+    <ion-item>
+      供应商名称
+      <ion-note item-end>{{product.shop}}</ion-note>
+    </ion-item>
+    <ion-item>
+      供应商电话
+      <ion-note item-end>{{product.phone}}</ion-note>
+    </ion-item>
+  </ion-list>
+</ion-content>
+<ion-footer class="footer-background">
+  <ion-grid no-padding style="position:fixed;bottom: -4px;left: 0px;right: 0px">
+    <ion-row no-padding>
+      <ion-col no-padding>
+        <button  color="primary" ion-button full>出/入库</button>
+      </ion-col>
+      <ion-col no-padding>
+        <button  color="darkblue" ion-button full (click)="share()">分享</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>
